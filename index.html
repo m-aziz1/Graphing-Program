@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <title>Graph</title>
+    <link rel="stylesheet" href="./css/graph.css" />
+  </head>
+
+  <body>
+    <h1>Graphing</h1>
+    <nav class="nav-bar">
+      <a href="./index.html">Graph</a><a href="./pages/notes.html">Notes</a>
+    </nav>
+
+    <!-- Canvas -->
+    <canvas id="graph-canvas"></canvas>
+
+    <p>Import Data: <input type="file" id="uploadData" /></p>
+    <p>Add/Remove Data Points (<em>Include both x and y</em>)</p>
+
+    <p>x: <input id="x-input" type="number" /></p>
+    <p>y: <input id="y-input" type="number" /></p>
+
+    <button id="add-value">Add</button>
+    <button id="remove-value">Remove</button>
+
+    <div id="graph-table">
+      <table>
+        <tr id="output-x-table">
+          <td>x</td>
+          <td>0</td>
+        </tr>
+        <tr id="output-y-table">
+          <td>y</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Load Javascript-->
+    <script src="./js/graphics-library.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

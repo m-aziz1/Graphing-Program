@@ -9,17 +9,10 @@ const ctx = cnv.getContext("2d");
 cnv.width = 550;
 cnv.height = 550;
 
-//CLASSES
-class DataPoint {
-  constructor(initX, initY) {
-    this.x = initX;
-    this.y = initY;
-  }
-}
-
 //DATA ARRAYS
 let graphValues = [];
 
+let hallo = new DataSet();
 //GET DATA
 //FROM FILE
 fileUploadEl.addEventListener("change", () => {
@@ -204,5 +197,3 @@ function drawGraph(
 }
 
 drawGraph(75, 75, 10, 10, "blue", "lightgrey");
-
-

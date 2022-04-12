@@ -1,20 +1,38 @@
 //CLASSES
-class DataPoint {
-  constructor(initX, initY) {
-    this.x = initX;
-    this.y = initY;
-    
+class DataManager {
+  constructor() {
     this.values = [];
   }
 
   //Methods
-  sort() {}
+  sort() {
+    this.values.sort((a, b) => a.x - b.x);
+  }
 
-  add() {}
+  fill(dataPair) {
+    //Add Value to Array
+    this.values.push(dataPair);
+    //Sort Array
+    this.sort();
+  }
+
+  add(dataPair, elOne, elTwo) {
+    //Check if value is found (-1 = false)
+    let index = this.compare(elOne, elTwo);
+    if (index > -1) {
+      alert("This data point already exists");
+    } else {
+      this.fill(dataPair);
+    }
+  }
 
   remove() {}
 
-  search() {}
+  compare(elOne, elTwo) {
+    return this.values.findIndex(
+      (point) => point.x === +elementOne.value && point.y === +elementTwo.value
+    );
+  }
 }
 
 class Table {

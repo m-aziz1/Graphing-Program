@@ -12,12 +12,20 @@ cnv.height = 550;
 //DATA ARRAYS
 let graphValues = [];
 
-let hallo = new DataSet();
+let data = new DataManager();
+
+function createPair(initX, initY) {
+  return {
+    x: initX,
+    y: initY
+  };
+}
+
 //GET DATA
 //FROM FILE
 fileUploadEl.addEventListener("change", () => {
   //Clear Existing Data
-  graphValues = [];
+  data.values = [];
 
   //Initialize File Variable
   let file = fileUploadEl.files[0];
@@ -41,7 +49,7 @@ fileUploadEl.addEventListener("change", () => {
 
     for (let i = 0; i < allPairs.length; i++) {
       splitPairs = allPairs[i].split(",").map(Number);
-      graphValues.push(new DataPoint(splitPairs[0], splitPairs[1]));
+      data.fill(createPair(splitPairs[0], splitPairs[1]));
     }
 
     //Build Table
@@ -54,8 +62,6 @@ let xInputEl = document.getElementById("x-input");
 let yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
 const removeBtnEl = document.getElementById("remove-value");
-
-//Search For Matching Values
 
 //Add Values
 addBtnEl.addEventListener("click", () => {
@@ -70,7 +76,7 @@ addBtnEl.addEventListener("click", () => {
     if (exists) {
       alert("Datapoint already Exists");
     } else {
-      graphValues.push(new DataPoint(+xInputEl.value, +yInputEl.value));
+      graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
       createTable(graphValues);
     }
 
@@ -95,7 +101,7 @@ removeBtnEl.addEventListener("click", () => {
 
       //If last DataPoint is deleted, Add Placeholder
       if (xTableEl.childNodes.length < 3) {
-        let placeholder = [new DataPoint(0, 0)];
+        let placeholder = [createPair(0, 0)];
         domManipulation(placeholder, xTableEl);
         domManipulation(placeholder, yTableEl);
       }
@@ -117,8 +123,6 @@ tableAxis.push(
 );
 
 function createTable(anArray) {
-  //Sort Array from lowest to highest x Values
-  graphValues.sort((a, b) => a.x - b.x);
 
   //Remove Previous Filled Table
   removeAllChildNodes(tableAxis);

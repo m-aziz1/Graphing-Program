@@ -61,16 +61,16 @@ addBtnEl.addEventListener("click", () => {
   //If input.value.length = 0, field is empty
   if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
     //Check if Value Does Not Already Exist
-    const exists = graphValues.some(
-      (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
-    );
-
+    // const exists = graphValues.some(
+    //   (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
+    // );
+    data.add(xInputEl, yInputEl);
     //Output
-    if (exists) {
-      alert("Datapoint already Exists");
-    } else {
-      // graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
-    }
+    // if (exists) {
+    //   alert("Datapoint already Exists");
+    // } else {
+    //   // graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
+    // }
 
     // createTable(graphValues);
     //If Field is Empty

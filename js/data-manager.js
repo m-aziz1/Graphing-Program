@@ -1,19 +1,34 @@
-//CLASSES
 class DataManager {
   constructor() {
     this.values = [];
   }
 
   //Methods
+  create(xElement, yELement) {
+    return {
+      x: xElement,
+      y: yELement,
+    };
+  }
+  
   sort() {
+    //Arrange from Lowest to highest x Values
     this.values.sort((a, b) => a.x - b.x);
   }
 
-  fill(dataPair) {
+
+  fill(xElement, yELement) {
+    let dataPair = this.create(xElement, yELement);
     //Add Value to Array
     this.values.push(dataPair);
     //Sort Array
     this.sort();
+  }
+
+  compare(xElement, yELement) {
+    return this.values.findIndex(
+      (point) => point.x === +xElement.value && point.y === +yELement.value
+    );
   }
 
   add(dataPair, elOne, elTwo) {
@@ -27,35 +42,4 @@ class DataManager {
   }
 
   remove() {}
-
-  compare(elOne, elTwo) {
-    return this.values.findIndex(
-      (point) => point.x === +elementOne.value && point.y === +elementTwo.value
-    );
-  }
-}
-
-class Table {
-  //inherit with extends
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-  }
-
-  //Methods
-  build() {}
-
-  empty() {}
-}
-
-class Graph {
-  constructor() {
-    this.horizontal = 0;
-    this.vertical = 0;
-  }
-
-  //Methods
-  scale() {}
-
-  design() {}
 }

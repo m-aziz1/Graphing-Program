@@ -14,13 +14,6 @@ let graphValues = [];
 
 let data = new DataManager();
 
-function createPair(initX, initY) {
-  return {
-    x: initX,
-    y: initY
-  };
-}
-
 //GET DATA
 //FROM FILE
 fileUploadEl.addEventListener("change", () => {
@@ -49,7 +42,7 @@ fileUploadEl.addEventListener("change", () => {
 
     for (let i = 0; i < allPairs.length; i++) {
       splitPairs = allPairs[i].split(",").map(Number);
-      data.fill(createPair(splitPairs[0], splitPairs[1]));
+      data.fill(splitPairs[0], splitPairs[1]);
     }
 
     //Build Table
@@ -76,10 +69,10 @@ addBtnEl.addEventListener("click", () => {
     if (exists) {
       alert("Datapoint already Exists");
     } else {
-      graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
-      createTable(graphValues);
+      // graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
     }
 
+    // createTable(graphValues);
     //If Field is Empty
   } else {
     alert("Please enter both x and y values");
@@ -123,7 +116,6 @@ tableAxis.push(
 );
 
 function createTable(anArray) {
-
   //Remove Previous Filled Table
   removeAllChildNodes(tableAxis);
 

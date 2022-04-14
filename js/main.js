@@ -46,7 +46,7 @@ fileUploadEl.addEventListener("change", () => {
     }
 
     //Build Table
-    createTable(graphValues);
+    createTable(data.values);
   };
 });
 
@@ -59,21 +59,9 @@ const removeBtnEl = document.getElementById("remove-value");
 //Add Values
 addBtnEl.addEventListener("click", () => {
   //If input.value.length = 0, field is empty
-  if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
-    //Check if Value Does Not Already Exist
-    // const exists = graphValues.some(
-    //   (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
-    // );
-    data.add(xInputEl, yInputEl);
-    //Output
-    // if (exists) {
-    //   alert("Datapoint already Exists");
-    // } else {
-    //   // graphValues.push(createPair(+xInputEl.value, +yInputEl.value));
-    // }
-
-    // createTable(graphValues);
-    //If Field is Empty
+  if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
+    //Call Add Method
+    data.add(+xInputEl.value, +yInputEl.value);
   } else {
     alert("Please enter both x and y values");
   }
@@ -81,26 +69,18 @@ addBtnEl.addEventListener("click", () => {
 
 //Delete Values
 removeBtnEl.addEventListener("click", () => {
-  if (+xInputEl.value.length !== 0 && +yInputEl.value.length !== 0) {
-    //Get Index of Existing Value
-    const found = graphValues.findIndex(
-      (point) => point.x === +xInputEl.value && point.y === +yInputEl.value
-    );
+  if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
+    //Call Remove function
+    data.remove(+xInputEl.value, +yInputEl.value);
 
-    //Remove the DataPoint if its x and y Values are in Stored Values
-    if (found > -1) {
-      graphValues.splice(found, 1);
-      createTable(graphValues);
 
-      //If last DataPoint is deleted, Add Placeholder
-      if (xTableEl.childNodes.length < 3) {
-        let placeholder = [createPair(0, 0)];
-        domManipulation(placeholder, xTableEl);
-        domManipulation(placeholder, yTableEl);
-      }
-    } else {
-      alert("Datapoint not found");
-    }
+    //If last DataPoint is deleted, Add Placeholder
+    // if (xTableEl.childNodes.length < 3) {
+    //   let placeholder = [createPair(0, 0)];
+    //   domManipulation(placeholder, xTableEl);
+    //   domManipulation(placeholder, yTableEl);
+    // }
+
   } else {
     alert("Please enter both x and y values");
   }

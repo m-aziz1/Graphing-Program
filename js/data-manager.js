@@ -25,25 +25,29 @@ class DataManager {
   }
 
   compare(xInput, yInput) {
+    //(-1 = value does not exist)
     return this.values.findIndex(
-      (index) => index.x === +xInput.value && index.y === +yInput.value
+      (index) => index.x === xInput && index.y === yInput
     );
   }
 
   add(xInput, yInput) {
-    //Check if value is found (-1 = false)
     let index = this.compare(xInput, yInput);
     if (index > -1) {
       alert("This data point already exists");
     } else {
-      let dataPair = this.create(+xInput.value, +yInput.value);
-      //Add Value to Array
-      this.values.push(dataPair);
-      //Sort Array
-      this.sort();
-      console.log(this.values);
+      this.fill(xInput, yInput)
+      //update table
     }
   }
 
-  remove() {}
+  remove(xInput, yInput) {
+    let index = this.compare(xInput, yInput);
+    if (index > -1) {
+      this.values.splice(index, 1);
+      //update table
+    } else {
+      alert("This data point does not exist");
+    }
+  }
 }

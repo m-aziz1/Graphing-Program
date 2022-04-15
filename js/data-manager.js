@@ -36,7 +36,7 @@ class DataManager {
     if (index > -1) {
       alert("This data point already exists");
     } else {
-      this.fill(xInput, yInput)
+      this.fill(xInput, yInput);
       //update table
     }
   }
@@ -49,5 +49,13 @@ class DataManager {
     } else {
       alert("This data point does not exist");
     }
+  }
+
+  empty() {
+    this.values = [];
+  }
+
+  fileImport() {
+    
   }
 }

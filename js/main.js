@@ -9,46 +9,36 @@ const ctx = cnv.getContext("2d");
 cnv.width = 550;
 cnv.height = 550;
 
-//DATA ARRAYS
-let graphValues = [];
-
+//DATA MANAGER
 let data = new DataManager();
 
 //GET DATA
 //FROM FILE
 fileUploadEl.addEventListener("change", () => {
   //Clear Existing Data
-  data.values = [];
+  data.empty();
 
   //Initialize File Variable
-  let file = fileUploadEl.files[0];
+  let fetchedFile = fileUploadEl.files[0];
 
-  //Create File Reader Object
-  let reader = new FileReader();
+  // fileToJSON(fetchedFile).then((result) => {
+  //   data.values.push(result);
+  // });
 
-  //Read Data
-  reader.readAsText(file);
-
-  //Process Data
-  reader.onloadend = () => {
-    let fetchedData = reader.result;
-
-    //Create One Array with All (x, y) String Pairs
-    let allPairs;
-    allPairs = fetchedData.split("\r\n");
-
-    //Use to Split Into Multiple [x, y] Integer Arrays
-    let splitPairs;
-
-    for (let i = 0; i < allPairs.length; i++) {
-      splitPairs = allPairs[i].split(",").map(Number);
-      data.fill(splitPairs[0], splitPairs[1]);
-    }
-
-    //Build Table
-    createTable(data.values);
-  };
+  // console.log(data.values);
+  //Build Table
+  // createTable(data.values);
 });
+
+//FILE READER
+async function fileToJSON(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.onload = (event) => resolve(JSON.parse(event.target.result));
+    fileReader.onerror = (error) => reject(error);
+    fileReader.readAsText(file);
+  });
+}
 
 //FROM INPUT
 let xInputEl = document.getElementById("x-input");
@@ -73,14 +63,12 @@ removeBtnEl.addEventListener("click", () => {
     //Call Remove function
     data.remove(+xInputEl.value, +yInputEl.value);
 
-
     //If last DataPoint is deleted, Add Placeholder
     // if (xTableEl.childNodes.length < 3) {
     //   let placeholder = [createPair(0, 0)];
     //   domManipulation(placeholder, xTableEl);
     //   domManipulation(placeholder, yTableEl);
     // }
-
   } else {
     alert("Please enter both x and y values");
   }

@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: #292929;
+  background-color: #d9d6f3;
 }
 
 body {
@@ -21,7 +21,7 @@ body p {
 }
 
 h1 {
-  color: #8b0000;
+  color: #8b45b9;
   margin-bottom: 10px;
 }
 
@@ -37,10 +37,10 @@ h1 {
 
 button {
   display: inline;
-  background-color: #deb887;
+  background-color: #d9d6f3;
   color: #000000;
   padding: 3px;
-  border: 1px solid #000000;
+  border: 1px solid #808080;
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -63,15 +63,17 @@ td {
 }
 
 .nav-bar {
-  padding: 10px;
+  padding: 15px;
 }
 
 .nav-bar a {
-  padding: 3px;
+  padding: 5px;
   margin: 5px;
   text-decoration: none;
-  background-color: #deb887;
-  border: 1px solid gray;
+  color: #503d69;
+  background-color: #d9d6f3;
+  border: 1px solid #808080;
+  border-radius: 6px;
 }
 
 .nav-bar a:hover,

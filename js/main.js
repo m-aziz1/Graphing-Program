@@ -2,6 +2,7 @@
 
 //DOCUMENT ELEMENTS
 const fileUploadEl = document.getElementById("uploadData");
+const downloadBtnEl = document.getElementById("download-btn");
 
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
@@ -12,35 +13,45 @@ cnv.height = 550;
 //DATA MANAGER
 let data = new DataManager();
 
-//GET DATA
-//FROM FILE
-fileUploadEl.addEventListener("change", () => {
+//GET DATA FROM FILE
+fileUploadEl.addEventListener("change", (event) => {
   //Clear Existing Data
   data.empty();
 
-  //Initialize File Variable
-  let fetchedFile = fileUploadEl.files[0];
+  //Create Reader Instance
+  var reader = new FileReader();
 
-  // fileToJSON(fetchedFile).then((result) => {
-  //   data.values.push(result);
-  // });
+  //Read File Content
+  reader.readAsText(event.target.files[0]);
 
-  // console.log(data.values);
-  //Build Table
-  // createTable(data.values);
+  reader.onload = (event) => {
+    var jsonData = JSON.parse(event.target.result);
+
+    //Push JSON Objects Into Data Array
+    for (let i = 0; i < jsonData.length; i++) {
+      data.fill(jsonData[i]);
+    }
+
+    createTable(data.values);
+  };
 });
 
-//FILE READER
-async function fileToJSON(file) {
-  return new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.onload = (event) => resolve(JSON.parse(event.target.result));
-    fileReader.onerror = (error) => reject(error);
-    fileReader.readAsText(file);
-  });
+//SAVE DATA
+downloadBtnEl.addEventListener("click", () => {
+  data.values.length != 0
+    ? download(JSON.stringify(data.values), "data.txt", "text/plain")
+    : alert("Error: No existing data");
+});
+
+function download(content, fileName, contentType) {
+  let a = document.createElement("a");
+  let file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
 }
 
-//FROM INPUT
+//GET DATA FROM INPUT
 let xInputEl = document.getElementById("x-input");
 let yInputEl = document.getElementById("y-input");
 const addBtnEl = document.getElementById("add-value");
@@ -52,6 +63,7 @@ addBtnEl.addEventListener("click", () => {
   if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
     //Call Add Method
     data.add(+xInputEl.value, +yInputEl.value);
+    createTable(data.values);
   } else {
     alert("Please enter both x and y values");
   }
@@ -62,6 +74,7 @@ removeBtnEl.addEventListener("click", () => {
   if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
     //Call Remove function
     data.remove(+xInputEl.value, +yInputEl.value);
+    createTable(data.values);
 
     //If last DataPoint is deleted, Add Placeholder
     // if (xTableEl.childNodes.length < 3) {

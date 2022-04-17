@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie-edge" />
     <title>Graph</title>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <link rel="stylesheet" href="./css/graph.css" />
   </head>
 
@@ -19,6 +19,7 @@
     <canvas id="graph-canvas"></canvas>
 
     <p>Import Data: <input type="file" id="uploadData" /></p>
+
     <p>Add/Remove Data Points (<em>Include both x and y</em>)</p>
 
     <p>x: <input id="x-input" type="number" /></p>
@@ -39,6 +40,8 @@
         </tr>
       </table>
     </div>
+
+    <button id="download-btn">Export</button>
 
     <!-- Load Javascript-->
     <script src="./js/graphics-library.js"></script>

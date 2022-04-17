@@ -16,8 +16,7 @@ class DataManager {
     this.values.sort((a, b) => a.x - b.x);
   }
 
-  fill(xElement, yELement) {
-    let dataPair = this.create(xElement, yELement);
+  fill(dataPair) {
     //Add Value to Array
     this.values.push(dataPair);
     //Sort Array
@@ -34,9 +33,10 @@ class DataManager {
   add(xInput, yInput) {
     let index = this.compare(xInput, yInput);
     if (index > -1) {
-      alert("This data point already exists");
+      alert("Error: This data point already exists");
     } else {
-      this.fill(xInput, yInput);
+      let dataPair = this.create(xInput, yInput);
+      this.fill(dataPair);
       //update table
     }
   }
@@ -47,15 +47,11 @@ class DataManager {
       this.values.splice(index, 1);
       //update table
     } else {
-      alert("This data point does not exist");
+      alert("Error: This data point does not exist");
     }
   }
 
   empty() {
     this.values = [];
-  }
-
-  fileImport() {
-    
   }
 }

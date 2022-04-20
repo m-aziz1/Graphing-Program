@@ -3,6 +3,9 @@
 //DOCUMENT ELEMENTS
 const fileUploadEl = document.getElementById("uploadData");
 const downloadBtnEl = document.getElementById("download-btn");
+//Row Nodes
+const xTableEl = document.getElementById("output-x-table");
+const yTableEl = document.getElementById("output-y-table");
 
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
@@ -11,7 +14,8 @@ cnv.width = 550;
 cnv.height = 550;
 
 //DATA MANAGER
-let data = new DataManager();
+let data = new DataManager(xTableEl, yTableEl);
+let table = data.table;
 
 //GET DATA FROM FILE
 fileUploadEl.addEventListener("change", (event) => {
@@ -44,11 +48,11 @@ downloadBtnEl.addEventListener("click", () => {
 });
 
 function download(content, fileName, contentType) {
-  let a = document.createElement("a");
+  let link = document.createElement("a");
   let file = new Blob([content], { type: contentType });
-  a.href = URL.createObjectURL(file);
-  a.download = fileName;
-  a.click();
+  link.href = URL.createObjectURL(file);
+  link.download = fileName;
+  link.click();
 }
 
 //GET DATA FROM INPUT
@@ -88,18 +92,13 @@ removeBtnEl.addEventListener("click", () => {
 });
 
 //CREATE TABLE OF VALUES
-//Row Nodes
-let xTableEl, yTableEl;
-tableAxis = [];
-tableAxis.push(
-  (xTableEl = document.getElementById("output-x-table")),
-  (yTableEl = document.getElementById("output-y-table"))
-);
-
 function createTable(anArray) {
   //Remove Previous Filled Table
-  removeAllChildNodes(tableAxis);
-
+  // removeAllChildNodes(table.rows);
+  table.empty(table.rows);
+  
+  table.build(data.values);
+  
   //Call Functions to Fill Table
   domManipulation(anArray, xTableEl);
   domManipulation(anArray, yTableEl);
@@ -107,10 +106,10 @@ function createTable(anArray) {
 
 //(dom = Document Object Model)
 function domManipulation(anArray, row) {
-  for (let i = 0; i < anArray.length; i++) {
-    let textNode;
-    let cellNode = document.createElement("td");
+let textNode;
 
+  for (let i = 0; i < anArray.length; i++) {
+    let cellNode = document.createElement("td");
     //Write as Strings to fill Data Cells
     if (row === xTableEl) {
       textNode = document.createTextNode(`${anArray[i].x}`);
@@ -127,17 +126,17 @@ function domManipulation(anArray, row) {
 }
 
 //Remove Current Table Data Loop
-function removeAllChildNodes(parentArray) {
-  //Remove Values for x and y Table Elements
-  parentArray.forEach((value) => nestedRemove(value));
+// function removeAllChildNodes(parentArray) {
+//   //Remove Values for x and y Table Elements
+//   parentArray.forEach((value) => nestedRemove(value));
 
-  //Remove Child Elements Loop
-  function nestedRemove(parent) {
-    while (parent.childNodes.length > 2) {
-      parent.removeChild(parent.lastChild);
-    }
-  }
-}
+//   //Remove Child Elements Loop
+//   function nestedRemove(parent) {
+//     while (parent.childNodes.length > 2) {
+//       parent.removeChild(parent.lastChild);
+//     }
+//   }
+// }
 
 function drawGraph(
   wMargin,

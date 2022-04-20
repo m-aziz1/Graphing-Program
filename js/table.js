@@ -1,14 +1,25 @@
-class Table {
+class TableEditor {
   //inherit with extends
-  constructor() {
-    this.top = [];
-    this.bottom = [];
+  constructor(xRow, yRow) {
+    this.rows = [];
+    this.rows.push(xRow, yRow);
   }
 
   //Methods
-  build() { }
+  build(dataArray) {
+    for (let i in dataArray) {
+      console.log(dataArray[i].x);
+    }
+  }
 
-  update() { }
+  update() {}
 
-  empty() { }
+  empty(parentArray) {
+    //Remove Values for x and y Table Elements
+    parentArray.forEach((parent) => {
+      while (parent.childNodes.length > 2) {
+        parent.removeChild(parent.lastChild);
+      }
+    });
+  }
 }

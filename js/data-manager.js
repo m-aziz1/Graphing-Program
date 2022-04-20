@@ -1,6 +1,7 @@
 class DataManager {
-  constructor() {
+  constructor(xRow, yRow) {
     this.values = [];
+    this.table = new TableEditor(xRow, yRow);
   }
 
   //Methods

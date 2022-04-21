@@ -6,13 +6,23 @@ class TableEditor {
   }
 
   //Methods
-  build(dataArray) {
-    for (let i in dataArray) {
-      console.log(dataArray[i].x);
+  build(dataArray, index = 0, property = "x") {
+    for (let i = 0; i < dataArray.length; i++) {
+      let cellNode = document.createElement("td");
+      let textNode = document.createTextNode(`${dataArray[i][property]}`);
+      //Push x and y Values Inside Data Cell Tags
+      cellNode.appendChild(textNode);
+      //Push Data Cells Inside Row Tags
+      this.rows[index].appendChild(cellNode);
     }
-  }
+    
+    if (index === 1) {
+      return;
+    }
 
-  update() {}
+    //Repeat for Y values
+    this.build(dataArray, 1, "y");
+  }
 
   empty(parentArray) {
     //Remove Values for x and y Table Elements

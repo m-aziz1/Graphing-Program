@@ -1,5 +1,5 @@
 //GRAPHING PROGRAM
-
+// DONT ALLOW NEGATIVE VALUES
 //DOCUMENT ELEMENTS
 const fileUploadEl = document.getElementById("uploadData");
 const downloadBtnEl = document.getElementById("download-btn");
@@ -36,7 +36,7 @@ fileUploadEl.addEventListener("change", (event) => {
       data.fill(jsonData[i]);
     }
 
-    createTable(data.values);
+    data.reconstructTable();
   };
 });
 
@@ -67,7 +67,6 @@ addBtnEl.addEventListener("click", () => {
   if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
     //Call Add Method
     data.add(+xInputEl.value, +yInputEl.value);
-    createTable(data.values);
   } else {
     alert("Please enter both x and y values");
   }
@@ -78,7 +77,6 @@ removeBtnEl.addEventListener("click", () => {
   if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
     //Call Remove function
     data.remove(+xInputEl.value, +yInputEl.value);
-    createTable(data.values);
 
     //If last DataPoint is deleted, Add Placeholder
     // if (xTableEl.childNodes.length < 3) {
@@ -90,53 +88,6 @@ removeBtnEl.addEventListener("click", () => {
     alert("Please enter both x and y values");
   }
 });
-
-//CREATE TABLE OF VALUES
-function createTable(anArray) {
-  //Remove Previous Filled Table
-  // removeAllChildNodes(table.rows);
-  table.empty(table.rows);
-  
-  table.build(data.values);
-  
-  //Call Functions to Fill Table
-  domManipulation(anArray, xTableEl);
-  domManipulation(anArray, yTableEl);
-}
-
-//(dom = Document Object Model)
-function domManipulation(anArray, row) {
-let textNode;
-
-  for (let i = 0; i < anArray.length; i++) {
-    let cellNode = document.createElement("td");
-    //Write as Strings to fill Data Cells
-    if (row === xTableEl) {
-      textNode = document.createTextNode(`${anArray[i].x}`);
-    } else if (row === yTableEl) {
-      textNode = document.createTextNode(`${anArray[i].y}`);
-    }
-
-    //Push x and y Values Inside Data Cell Tags
-    cellNode.appendChild(textNode);
-
-    //Push Data Cells Inside Row Tags
-    row.appendChild(cellNode);
-  }
-}
-
-//Remove Current Table Data Loop
-// function removeAllChildNodes(parentArray) {
-//   //Remove Values for x and y Table Elements
-//   parentArray.forEach((value) => nestedRemove(value));
-
-//   //Remove Child Elements Loop
-//   function nestedRemove(parent) {
-//     while (parent.childNodes.length > 2) {
-//       parent.removeChild(parent.lastChild);
-//     }
-//   }
-// }
 
 function drawGraph(
   wMargin,
@@ -172,4 +123,4 @@ function drawGraph(
   }
 }
 
-drawGraph(75, 75, 10, 10, "blue", "lightgrey");
+drawGraph(75, 75, 10, 10, "blue", "grey");

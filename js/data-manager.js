@@ -38,7 +38,7 @@ class DataManager {
     } else {
       let dataPair = this.create(xInput, yInput);
       this.fill(dataPair);
-      //update table
+      this.reconstructTable();
     }
   }
 
@@ -46,7 +46,7 @@ class DataManager {
     let index = this.compare(xInput, yInput);
     if (index > -1) {
       this.values.splice(index, 1);
-      //update table
+      this.reconstructTable();
     } else {
       alert("Error: This data point does not exist");
     }
@@ -54,5 +54,10 @@ class DataManager {
 
   empty() {
     this.values = [];
+  }
+
+  reconstructTable() {
+    this.table.empty(this.table.rows);
+    this.table.build(this.values);
   }
 }

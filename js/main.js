@@ -75,13 +75,6 @@ removeBtnEl.addEventListener("click", () => {
   if (xInputEl.value.length !== 0 && yInputEl.value.length !== 0) {
     //Call Remove function
     data.remove(+xInputEl.value, +yInputEl.value);
-
-    //If last DataPoint is deleted, Add Placeholder
-    // if (xTableEl.childNodes.length < 3) {
-    //   let placeholder = [createPair(0, 0)];
-    //   domManipulation(placeholder, xTableEl);
-    //   domManipulation(placeholder, yTableEl);
-    // }
   } else {
     alert("Please enter both x and y values");
   }

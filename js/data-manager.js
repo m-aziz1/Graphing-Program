@@ -38,7 +38,7 @@ class DataManager {
     } else {
       let dataPair = this.create(xInput, yInput);
       this.fill(dataPair);
-      this.reconstructTable();
+      this.rebuildTable();
     }
   }
 
@@ -46,7 +46,7 @@ class DataManager {
     let index = this.compare(xInput, yInput);
     if (index > -1) {
       this.values.splice(index, 1);
-      this.reconstructTable();
+      this.rebuildTable();
     } else {
       alert("Error: This data point does not exist");
     }
@@ -56,8 +56,20 @@ class DataManager {
     this.values = [];
   }
 
-  reconstructTable() {
+  rebuildTable() {
     this.table.empty(this.table.rows);
     this.table.build(this.values);
+  }
+
+  export(fileType, fileName) {
+    if (this.values.length != 0) {
+      let link = document.createElement("a");
+      let file = new Blob([JSON.stringify(this.values)], {type: fileType});
+      link.href = URL.createObjectURL(file);
+      link.download = fileName;
+      link.click();
+    } else {
+      alert("Error: No existing data");
+    }
   }
 }

@@ -36,15 +36,13 @@ fileUploadEl.addEventListener("change", (event) => {
       data.fill(jsonData[i]);
     }
 
-    data.reconstructTable();
+    data.rebuildTable();
   };
 });
 
 //SAVE DATA
 downloadBtnEl.addEventListener("click", () => {
-  data.values.length != 0
-    ? download(JSON.stringify(data.values), "data.txt", "text/plain")
-    : alert("Error: No existing data");
+  data.export("text/plain", "data.txt");
 });
 
 function download(content, fileName, contentType) {

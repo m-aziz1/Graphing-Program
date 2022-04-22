@@ -15,7 +15,8 @@ class TableEditor {
       //Push Data Cells Inside Row Tags
       this.rows[index].appendChild(cellNode);
     }
-    
+
+    //Stop Recursion
     if (index === 1) {
       return;
     }

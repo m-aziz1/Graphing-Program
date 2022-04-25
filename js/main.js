@@ -1,5 +1,5 @@
 //GRAPHING PROGRAM
-// DONT ALLOW NEGATIVE VALUES
+
 //DOCUMENT ELEMENTS
 const fileUploadEl = document.getElementById("uploadData");
 const downloadBtnEl = document.getElementById("download-btn");
@@ -13,9 +13,10 @@ const ctx = cnv.getContext("2d");
 cnv.width = 550;
 cnv.height = 550;
 
-//DATA MANAGER
+//OBJECTS
 let data = new DataManager(xTableEl, yTableEl);
 let table = data.table;
+let graph = 
 
 //GET DATA FROM FILE
 fileUploadEl.addEventListener("change", (event) => {
@@ -37,7 +38,7 @@ fileUploadEl.addEventListener("change", (event) => {
     }
 
     data.rebuildTable();
-  };
+  };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 });
 
 //SAVE DATA

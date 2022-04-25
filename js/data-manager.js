@@ -1,7 +1,7 @@
 class DataManager {
   constructor(xRow, yRow) {
     this.values = [];
-    this.table = new TableEditor(xRow, yRow);
+    this.table = new TableManager(xRow, yRow);
   }
 
   //Methods
@@ -64,7 +64,7 @@ class DataManager {
   export(fileType, fileName) {
     if (this.values.length != 0) {
       let link = document.createElement("a");
-      let file = new Blob([JSON.stringify(this.values)], {type: fileType});
+      let file = new Blob([JSON.stringify(this.values)], { type: fileType });
       link.href = URL.createObjectURL(file);
       link.download = fileName;
       link.click();

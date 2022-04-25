@@ -1,4 +1,4 @@
-class TableEditor {
+class TableManager {
   //inherit with extends
   constructor(xRow, yRow) {
     this.rows = [];

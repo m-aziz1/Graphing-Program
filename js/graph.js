@@ -1,11 +1,13 @@
-class Graph {
-  constructor() {
-    this.horizontal = 0;
-    this.vertical = 0;
+class GraphManager {
+  constructor(xInt, yInt, margin, color) {
+    this.intervalsX = xInt;
+    this.intervalsY = yInt;
+    this.margin = margin;
+    this.color = color;
   }
 
   //Methods
-  scale() { }
-
-  design() { }
+  build() {
+    
+  }
 }

@@ -19,12 +19,36 @@
     <canvas id="graph-canvas"></canvas>
 
     <p>Import Data: <input type="file" id="uploadData" /></p>
-    
-    <p>Add/Remove Data Points (<em>Include both x and y</em>)</p>
 
+    <p>
+      <select id="menu">
+        <option value="" disabled selected hidden>--menu--</option>
+        <optgroup label="Resize">
+          <option value="half-size">50%</option>
+          <option value="three-quarter">75%</option>
+          <option value="max-size">100%</option>
+        </optgroup>
+        <optgroup label="Function List">
+          <option value="func-arithmetic">ARITHMETIC</option>
+          <option value="func-geometric">GEOMETRIC</option>
+          <option value="func-series">SERIES</option>
+          <option value="func-sum">SUM</option>
+          <option value="func-average">AVERAGE</option>
+          <option value="func-lookup">LOOKUP</option>
+        </optgroup>
+      </select>
+      <button>Parameter List</button>
+    </p>
+
+    <p>
+      Parameters: <input type="text" id="func-input" />
+      <input type="text" id="return-func" readonly />
+      <button id="go">Go</button>
+    </p>
+
+    <p>Add/Remove Data Points (<em>Include both x and y</em>)</p>
     <p>x: <input id="x-input" type="number" /></p>
     <p>y: <input id="y-input" type="number" /></p>
-
     <button id="add-value">Add</button>
     <button id="remove-value">Remove</button>
 
@@ -46,6 +70,7 @@
     <script src="./js/data-manager.js"></script>
     <script src="./js/table.js"></script>
     <script src="./js/graph.js"></script>
+    <script src="./js/functions.js"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>

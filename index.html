@@ -24,9 +24,9 @@
       <select id="menu">
         <option value="" disabled selected hidden>--menu--</option>
         <optgroup label="Resize">
-          <option value="half-size">50%</option>
-          <option value="three-quarter">75%</option>
-          <option value="max-size">100%</option>
+          <option value="size-fifty">50%</option>
+          <option value="size-seventy-five">75%</option>
+          <option value="size-hundred">100%</option>
         </optgroup>
         <optgroup label="Function List">
           <option value="func-arithmetic">ARITHMETIC</option>
@@ -34,7 +34,10 @@
           <option value="func-series">SERIES</option>
           <option value="func-sum">SUM</option>
           <option value="func-average">AVERAGE</option>
+          <option value="func-median">MEDIAN</option>
+          <option value="func-range">RANGE</option>
           <option value="func-lookup">LOOKUP</option>
+          <option value="func-trend">TREND</option>
         </optgroup>
       </select>
       <button>Parameter List</button>
@@ -43,7 +46,7 @@
     <p>
       Parameters: <input type="text" id="func-input" />
       <input type="text" id="return-func" readonly />
-      <button id="go">Go</button>
+      <button id="go-btn">Go</button>
     </p>
 
     <p>Add/Remove Data Points (<em>Include both x and y</em>)</p>

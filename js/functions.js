@@ -4,7 +4,6 @@ let menuEl = document.getElementById("menu");
 let goBtnEl = document.getElementById("go-btn");
 //
 
-
 menuEl.addEventListener("change", () => {
   let selection = menuEl.value;
   handleFunction[selection]();
@@ -12,29 +11,24 @@ menuEl.addEventListener("change", () => {
 
 //prettier-ignore
 const handleFunction = {
-  "0": sizeFifty,
-  "1": sizeSeventyFive,
-  "2": sizeHundred,
-  "3": arithmetic,
-  "4": geometric,
-  "5": series,
-  "6": sum,
-  "7": average,
-  "8": median,
-  "9": range,
-  "10": lookup,
+  "0": increaseSize,
+  "1": decreaseSize,
+  "2": arithmetic,
+  "3": geometric,
+  "4": series,
+  "5": sum,
+  "6": average,
+  "7": median,
+  "8": range,
+  "9": lookup,
 };
 
-function sizeFifty() {
-  alert("size-fifty");
+function increaseSize() {
+  cnvSize(50, 1);
 }
 
-function sizeSeventyFive() {
-  alert("size-jg");
-}
-
-function sizeHundred() {
-  alert("size-fifty");
+function decreaseSize() {
+  cnvSize(50, -1);
 }
 
 function arithmetic() {
@@ -67,4 +61,11 @@ function range() {
 
 function lookup() {
   alert("size-fifty");
+}
+
+function cnvSize(increment, operator) {
+  //Operator = -1 for Subtraction
+  cnv.width += increment * operator;
+  cnv.height = cnv.width;
+  drawGraph(20, 10, "blue", "grey");
 }

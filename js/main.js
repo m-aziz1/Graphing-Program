@@ -10,13 +10,22 @@ const yTableEl = document.getElementById("output-y-table");
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
 const ctx = cnv.getContext("2d");
-cnv.width = 550;
-cnv.height = 550;
+cnv.width = document.body.clientWidth - 50;
+cnv.height = cnv.width;
+
+drawGraph(20, 10, "blue", "grey");
+
+//Resize Graph to fit
+window.addEventListener("resize", () => {
+  cnv.width = document.body.clientWidth - 50;
+  cnv.height = cnv.width;
+
+  drawGraph(20, 10, "blue", "grey");
+});
 
 //OBJECTS
 let data = new DataManager(xTableEl, yTableEl);
 let table = data.table;
-let graph = 
 
 //GET DATA FROM FILE
 fileUploadEl.addEventListener("change", (event) => {
@@ -38,7 +47,7 @@ fileUploadEl.addEventListener("change", (event) => {
     }
 
     data.rebuildTable();
-  };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  };
 });
 
 //SAVE DATA
@@ -81,38 +90,30 @@ removeBtnEl.addEventListener("click", () => {
   }
 });
 
-function drawGraph(
-  wMargin,
-  hMargin,
-  xIntervals,
-  yIntervals,
-  axisColor,
-  intervalColor
-) {
+function drawGraph(xIntervals, yIntervals, axisColor, intervalColor) {
   //Draw Background
   background("white");
+  margin = cnv.width * 0.1;
 
   //Set New Dimensions with Margins
-  nHeight = cnv.height - hMargin;
-  nWidth = cnv.width - wMargin;
+  nHeight = cnv.height - margin;
+  nWidth = cnv.width - margin;
 
   //Create Vertical and Horizontal Axis
-  line(wMargin, hMargin, wMargin, nHeight, axisColor);
-  line(wMargin, nHeight, nWidth, nHeight, axisColor);
+  line(margin, margin, margin, nHeight, axisColor);
+  line(margin, nHeight, nWidth, nHeight, axisColor);
 
-  let xSpacer = (nWidth - wMargin) / xIntervals;
+  let xSpacer = (nWidth - margin) / xIntervals;
   let xCoord = 0;
   for (let i = 0; i < xIntervals; i++) {
     xCoord += xSpacer;
-    line(wMargin + xCoord, hMargin, wMargin + xCoord, nHeight, intervalColor);
+    line(margin + xCoord, margin, margin + xCoord, nHeight, intervalColor);
   }
 
-  let ySpacer = (nHeight - hMargin) / yIntervals;
+  let ySpacer = (nHeight - margin) / yIntervals;
   let yCoord = 0;
   for (let i = 0; i < yIntervals; i++) {
     yCoord += ySpacer;
-    line(wMargin, yCoord + hMargin, nWidth, yCoord + hMargin, intervalColor);
+    line(margin, yCoord + margin, nWidth, yCoord + margin, intervalColor);
   }
 }
-
-drawGraph(75, 75, 10, 10, "blue", "grey");

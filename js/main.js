@@ -10,12 +10,12 @@ const yTableEl = document.getElementById("output-y-table");
 //CANVAS SETUP
 const cnv = document.getElementById("graph-canvas");
 const ctx = cnv.getContext("2d");
-cnv.width = document.body.clientWidth - 50;
+cnv.width = document.body.clientWidth - 100;
 cnv.height = cnv.width;
 
 drawGraph(20, 10, "blue", "grey");
 
-//Resize Graph to fit
+//Scale Graph with Window Size
 window.addEventListener("resize", () => {
   cnv.width = document.body.clientWidth - 50;
   cnv.height = cnv.width;
@@ -93,27 +93,29 @@ removeBtnEl.addEventListener("click", () => {
 function drawGraph(xIntervals, yIntervals, axisColor, intervalColor) {
   //Draw Background
   background("white");
-  margin = cnv.width * 0.1;
+  
+  wMargin = cnv.width * 0.1;
+  hMargin = cnv.width * 0.1;
 
   //Set New Dimensions with Margins
-  nHeight = cnv.height - margin;
-  nWidth = cnv.width - margin;
+  nHeight = cnv.height - hMargin;
+  nWidth = cnv.width - wMargin;
 
   //Create Vertical and Horizontal Axis
-  line(margin, margin, margin, nHeight, axisColor);
-  line(margin, nHeight, nWidth, nHeight, axisColor);
+  line(wMargin, hMargin, wMargin, nHeight, axisColor);
+  line(wMargin, nHeight, nWidth, nHeight, axisColor);
 
-  let xSpacer = (nWidth - margin) / xIntervals;
+  let xSpacer = (nWidth - wMargin) / xIntervals;
   let xCoord = 0;
   for (let i = 0; i < xIntervals; i++) {
     xCoord += xSpacer;
-    line(margin + xCoord, margin, margin + xCoord, nHeight, intervalColor);
+    line(wMargin + xCoord, hMargin, wMargin + xCoord, nHeight, intervalColor);
   }
 
-  let ySpacer = (nHeight - margin) / yIntervals;
+  let ySpacer = (nHeight - hMargin) / yIntervals;
   let yCoord = 0;
   for (let i = 0; i < yIntervals; i++) {
     yCoord += ySpacer;
-    line(margin, yCoord + margin, nWidth, yCoord + margin, intervalColor);
+    line(wMargin, yCoord + hMargin, nWidth, yCoord + hMargin, intervalColor);
   }
 }

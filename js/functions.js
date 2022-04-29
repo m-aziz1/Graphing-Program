@@ -1,8 +1,10 @@
 //HTML Elements
 //Input
-let menuEl = document.getElementById("menu");
-let goBtnEl = document.getElementById("go-btn");
-//
+const menuEl = document.getElementById("menu");
+const goBtnEl = document.getElementById("go-btn");
+const paramContainer = document.getElementById("param-container");
+// const paramInputEl = document.getElementById("func-input");
+// const returnFuncEl = document.getElementById("return-func");
 
 menuEl.addEventListener("change", () => {
   let selection = menuEl.value;
@@ -24,11 +26,11 @@ const handleFunction = {
 };
 
 function increaseSize() {
-  cnvSize(50, 1);
+  createInputField(2);
 }
 
 function decreaseSize() {
-  cnvSize(50, -1);
+  createInputField(2);
 }
 
 function arithmetic() {
@@ -68,4 +70,14 @@ function cnvSize(increment, operator) {
   cnv.width += increment * operator;
   cnv.height = cnv.width;
   drawGraph(20, 10, "blue", "grey");
+}
+
+function createInputField(count) {
+  for (let i = 0; i < count; i++) {
+    let paramField = document.createElement("input");
+    paramField.type = "text";
+    paramField.id = `param${i}`;
+    paramContainer.appendChild(paramField);
+    console.log(paramField);
+  }
 }

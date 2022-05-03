@@ -1,10 +1,8 @@
 //HTML Elements
-//Input
 const menuEl = document.getElementById("menu");
 const goBtnEl = document.getElementById("go-btn");
 const paramContainer = document.getElementById("param-container");
-// const paramInputEl = document.getElementById("func-input");
-// const returnFuncEl = document.getElementById("return-func");
+let paramArray = [];
 
 menuEl.addEventListener("change", () => {
   let selection = menuEl.value;
@@ -30,39 +28,39 @@ function increaseSize() {
 }
 
 function decreaseSize() {
-  createInputField(2);
+  createInputField(6);
 }
 
 function arithmetic() {
-  alert("size-fifty");
+  alert("arithmetic");
 }
 
 function geometric() {
-  alert("size-fifty");
+  alert("geometric");
 }
 
 function series() {
-  alert("size-fifty");
+  alert("series");
 }
 
 function sum() {
-  alert("size-fifty");
+  alert("sum");
 }
 
 function average() {
-  alert("size-fifty");
+  alert("average");
 }
 
 function median() {
-  alert("size-fifty");
+  alert("median");
 }
 
 function range() {
-  alert("size-fifty");
+  alert("range");
 }
 
 function lookup() {
-  alert("size-fifty");
+  alert("lookup");
 }
 
 function cnvSize(increment, operator) {
@@ -73,11 +71,31 @@ function cnvSize(increment, operator) {
 }
 
 function createInputField(count) {
+  if (paramArray.length !== 0) {
+    deleteFields();
+  }
+
+  paramArray = [];
+  //Fill Array with New Parameters
   for (let i = 0; i < count; i++) {
     let paramField = document.createElement("input");
     paramField.type = "text";
-    paramField.id = `param${i}`;
-    paramContainer.appendChild(paramField);
-    console.log(paramField);
+    paramField.id = `param${i + 1}`;
+    paramField.placeholder = `param${i + 1}`;
+    paramArray.push(paramField);
+    paramContainer.appendChild(paramArray[i]);
+  }
+}
+
+goBtnEl.addEventListener("click", () => {
+  for (let i = 0; i < paramArray.length; i++) {
+    console.log(+paramArray[i].value);
+  }
+});
+
+function deleteFields() {
+  //Empty Parameters Array
+  for (let i = 0; i < paramArray.length; i++) {
+    paramContainer.removeChild(paramContainer.lastChild);
   }
 }

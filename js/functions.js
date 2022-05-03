@@ -24,43 +24,52 @@ const handleFunction = {
 };
 
 function increaseSize() {
+  //2 params - Height/Width and Increment
   createInputField(2);
 }
 
 function decreaseSize() {
-  createInputField(6);
+  createInputField(2);
 }
 
 function arithmetic() {
+  //Params - replace one row of values (x/y) or create new|start number, end number and the increments
   alert("arithmetic");
 }
 
 function geometric() {
   alert("geometric");
+  //Params - replace one row of values (x/y) or create new|start number, end number and the increments
 }
 
 function series() {
   alert("series");
+  //Params - replace one row of values (x/y) or create new|start number, end number and the increments
 }
 
 function sum() {
   alert("sum");
+  //Params - row (x/y), all values in that row or a range (cell# to cell#)
 }
 
 function average() {
   alert("average");
+  //Params - row (x/y), all values in that row or a range (cell# to cell#)
 }
 
 function median() {
   alert("median");
+  //Params - row (x/y)
 }
 
 function range() {
   alert("range");
+  //redundant - remove
 }
 
 function lookup() {
   alert("lookup");
+  // check if a specific value is in row (x/y), highlight on graph - color
 }
 
 function cnvSize(increment, operator) {

@@ -93,7 +93,7 @@ removeBtnEl.addEventListener("click", () => {
 function drawGraph(xIntervals, yIntervals, axisColor, intervalColor) {
   //Draw Background
   background("white");
-  
+
   wMargin = cnv.width * 0.1;
   hMargin = cnv.width * 0.1;
 
